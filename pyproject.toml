@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "orcakit-harness-agent"
 # Single source of truth for the package version (runtime reads via importlib.metadata).
 version = "1.0.10"
-description = "Production-grade Harness Agent built on top of LangChain Deep Agents."
+description = "OrcaKit Harness Agent 架构与源码深度学习笔记"
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.11"
