@@ -1,0 +1,387 @@
+Metadata-Version: 2.3
+Name: orcakit-harness-agent
+Version: 1.0.10
+Summary: Production-grade Harness Agent built on top of LangChain Deep Agents.
+Project-URL: Homepage, https://github.com/TencentCloud/harness-agent
+Project-URL: Repository, https://github.com/TencentCloud/harness-agent
+Project-URL: Issues, https://github.com/TencentCloud/harness-agent/issues
+Project-URL: Changelog, https://github.com/TencentCloud/harness-agent/blob/main/CHANGELOG.md
+Author: orcakit
+License: MIT
+Keywords: agent,deep-agents,harness,langchain,langgraph,llm
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.11
+Requires-Dist: deepagents<0.8,>=0.7
+Requires-Dist: harness-browser>=0.7.7
+Requires-Dist: harness-memory>=0.9.6
+Requires-Dist: httpx>=0.27
+Requires-Dist: langchain-anthropic<2.0,>=1.5.4
+Requires-Dist: langchain-core<2.0,>=1.5.0
+Requires-Dist: langchain-mcp-adapters>=0.3.0
+Requires-Dist: langchain-openai<2.0,>=1.2.2
+Requires-Dist: langchain<2.0,>=1.3.14
+Requires-Dist: langgraph-checkpoint-sqlite>=2.0
+Requires-Dist: langgraph<2.0,>=1.0
+Requires-Dist: markdownify>=0.13
+Requires-Dist: mcp<2,>=1.27.1
+Requires-Dist: pyyaml>=6.0
+Provides-Extra: acp
+Requires-Dist: agent-client-protocol>=0.9.0; extra == 'acp'
+Requires-Dist: psutil>=5.9; extra == 'acp'
+Provides-Extra: all
+Requires-Dist: agent-client-protocol>=0.9.0; extra == 'all'
+Requires-Dist: cos-python-sdk-v5>=1.9; extra == 'all'
+Requires-Dist: deepagents-backends>=0.2; (python_version >= '3.12') and extra == 'all'
+Requires-Dist: docker>=7.0; extra == 'all'
+Requires-Dist: esdk-obs-python>=3.24; extra == 'all'
+Requires-Dist: google-api-python-client>=2.0; extra == 'all'
+Requires-Dist: langchain-aws>=0.2; extra == 'all'
+Requires-Dist: langchain-community>=0.3; extra == 'all'
+Requires-Dist: langchain-tavily>=0.1; extra == 'all'
+Requires-Dist: langfuse>=4.9.0; extra == 'all'
+Requires-Dist: mss>=9.0; extra == 'all'
+Requires-Dist: oss2>=2.18; extra == 'all'
+Requires-Dist: pillow>=10.0; extra == 'all'
+Requires-Dist: psutil>=5.9; extra == 'all'
+Requires-Dist: pynput>=1.7; extra == 'all'
+Provides-Extra: bedrock
+Requires-Dist: langchain-aws>=0.2; extra == 'bedrock'
+Provides-Extra: cli
+Requires-Dist: click>=8.1; extra == 'cli'
+Requires-Dist: prompt-toolkit>=3.0; extra == 'cli'
+Requires-Dist: python-dotenv>=1.0; extra == 'cli'
+Requires-Dist: rich>=13.0; extra == 'cli'
+Provides-Extra: desktop
+Requires-Dist: mss>=9.0; extra == 'desktop'
+Requires-Dist: pillow>=10.0; extra == 'desktop'
+Requires-Dist: pynput>=1.7; extra == 'desktop'
+Provides-Extra: docker
+Requires-Dist: docker>=7.0; extra == 'docker'
+Provides-Extra: object-storage
+Requires-Dist: cos-python-sdk-v5>=1.9; extra == 'object-storage'
+Requires-Dist: esdk-obs-python>=3.24; extra == 'object-storage'
+Requires-Dist: oss2>=2.18; extra == 'object-storage'
+Provides-Extra: observability
+Requires-Dist: langfuse>=4.9.0; extra == 'observability'
+Provides-Extra: opensandbox
+Requires-Dist: opensandbox<0.2,>=0.1.16; extra == 'opensandbox'
+Provides-Extra: remote-backends
+Requires-Dist: deepagents-backends>=0.2; (python_version >= '3.12') and extra == 'remote-backends'
+Provides-Extra: web-search-all
+Requires-Dist: google-api-python-client>=2.0; extra == 'web-search-all'
+Requires-Dist: langchain-community>=0.3; extra == 'web-search-all'
+Requires-Dist: langchain-tavily>=0.1; extra == 'web-search-all'
+Description-Content-Type: text/markdown
+
+<p align="center">
+  <img src="assets/images/banner.jpeg" alt="Harness Agent Banner" width="600" />
+</p>
+
+<p align="center">
+  <strong>Production-grade agent runtime built on the Harness theory — a thin, production-ready façade over Deep Agents.</strong>
+</p>
+
+<p align="center">
+  <a href="https://www.python.org/downloads/"><img alt="Python 3.11+" src="https://img.shields.io/badge/python-3.11%2B-blue?logo=python&logoColor=white" /></a>
+  <a href="https://github.com/TencentCloud/harness-agent/blob/main/LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-green" /></a>
+  <a href="https://pypi.org/project/orcakit-harness-agent/"><img src="https://img.shields.io/pypi/v/orcakit-harness-agent" alt="PyPI" /></a>
+  <a href="https://github.com/astral-sh/ruff"><img alt="Code Style: Ruff" src="https://img.shields.io/badge/code%20style-ruff-000000?logo=ruff&logoColor=white" /></a>
+  <a href="https://github.com/TencentCloud/harness-agent"><img alt="GitHub stars" src="https://img.shields.io/github/stars/orcakit/harness-agent?style=social" /></a>
+</p>
+
+<p align="center">
+  <a href="#-highlights">Highlights</a> ·
+  <a href="#-overview">Overview</a> ·
+  <a href="#-core-technology">Core Technology</a> ·
+  <a href="#-features">Features</a> ·
+  <a href="#-quick-start">Quick Start</a> ·
+  <a href="#-contents">Contents</a>
+</p>
+
+<p align="center">
+  <b>English</b> · <a href="README_CN.md">中文</a>
+</p>
+
+---
+
+**Harness Agent** is a production-grade agent runtime built on the harness engineering theory. At its core it is a thin, battle-tested **encapsulation and engineering layer around [Deep Agents](https://github.com/langchain-ai/deepagents)** — we take the elegant `create_deep_agent` primitive from Deep Agents and package it with everything you need to run agents in production: multi-provider model routing, persistent memory, browser/search tools, a multi-agent registry, pluggable storage backends, and a terminal CLI.
+
+> 💜 **A tribute to Deep Agents.** Harness Agent stands on the shoulders of [Deep Agents](https://github.com/langchain-ai/deepagents) (by the LangChain team). Our `HarnessAgent` ultimately delegates to `deepagents.create_deep_agent`, and everything else — model routing, backends, tiered memory, the agent registry, CLI, and ACP — is the engineering we added on top. Deep Agents gives us the agentic foundation; Harness gives it a home for production.
+
+## ✨ Highlights
+
+| | Feature | Description |
+|---|---------|-------------|
+| 🧩 | **Built on Deep Agents** | A faithful, production-focused facade over `deepagents.create_deep_agent` — kudos to the Deep Agents project |
+| 🔀 | **Model routing** | `ChatModelFactory` with OpenAI, Anthropic, AWS Bedrock, and 17 editable provider presets |
+| 🧠 | **Persistent memory** | [harness-memory](https://github.com/TencentCloud/harness-memory) middleware with tiered L0→L3 distillation |
+| 🛠️ | **Rich toolset** | Browser automation, web search, file ops, sub-agents, and MCP tools out of the box |
+| 🗂️ | **Multi-agent registry** | `AgentManager` runs many isolated agents in one process |
+| 💾 | **Pluggable backends** | Local disk, S3, COS, or PostgreSQL as the agent workspace |
+| 🔌 | **ACP integration** | A stdio ACP server so IDE / terminal AIs can drive your agent |
+| 🔒 | **Safety built-in** | Tool guardrails, filesystem permissions, and PII redaction |
+| 💬 | **Teams** | A peer inbox for agent-to-agent messaging |
+| ⌨️ | **Terminal CLI** | Interactive chat, provider/skill config, and agent management |
+
+## 📌 Overview
+
+Harness Agent is a library (not an app) that turns Deep Agents into a deployable runtime. A single `HarnessAgentManager` owns a registry of agents; each agent wires together a model, a set of tools/skills, a memory backend, and a LangGraph checkpoint — all assembled through the `harness` layering discipline (L0 I/O helpers → L1 workspace facade → L2 business logic → L3 assembly).
+
+> Harness Agent's design goal: let you build a production-grade agent from Deep Agents in a few lines of code, while keeping model choice, memory, storage, and safety swappable without rewriting your agent.
+
+## 🧠 Core Technology
+
+| Layer | Technology |
+|-------|-----------|
+| **Language** | Python 3.11+ |
+| **Agent core** | [Deep Agents](https://github.com/langchain-ai/deepagents) (`create_deep_agent`) |
+| **Graph runtime** | LangGraph + SQLite checkpoint |
+| **Model routing** | `ChatModelFactory` (OpenAI / Anthropic / Bedrock + 17 presets) |
+| **Memory** | [harness-memory](https://github.com/TencentCloud/harness-memory) middleware |
+| **Browser / search** | [harness-browser](https://github.com/TencentCloud/harness-browser) + web search |
+| **Workspaces** | `BackendWorkspace`: local / S3 / COS / PostgreSQL |
+| **ACP** | agent-client-protocol |
+| **Build / quality** | hatchling · ruff · mypy · pytest |
+
+## 🤔 Features
+
+### Agent runtime
+- `HarnessAgentManager` — a registry that creates, lists, and streams many agents in one process.
+- `HarnessAgent` — exposes `call`, `stream`, `stream_events`, `aget_history`, `aappend_messages`, and `cancel`.
+- Checkpointing via LangGraph `AsyncSqliteSaver` (or a harness-memory saver) for resumable chats.
+
+### Model routing & providers
+- `ChatModelFactory` resolves a model name to the right client.
+- First-class providers: **OpenAI** (incl. OpenAI-compatible via `base_url`), **Anthropic**, and **AWS Bedrock** (optional `[bedrock]` extra).
+- 17 user-editable provider presets, including Hunyuan, Kimi, GLM, DeepSeek, MiniMax, and Moonshot.
+
+### Memory (tiered)
+- Each turn is captured as **L0 raw events**, then distilled asynchronously into **L2 atoms** (`AtomCard`s) and **L3 entity pages**.
+- Powered by the harness-memory middleware; memory travels with the workspace.
+- Recall is frozen once per user turn and appended to the model-facing user message,
+  keeping the system prompt stable. Checkpoints preserve recall snapshots for exact
+  replay while chat history and capture retain the original user text. See
+  [recall and prompt caching](docs/superpowers/specs/2026-09-14-recall-prompt-cache.md).
+
+### Tools & skills
+- Built-in tools: browser (harness-browser), web search, files, ``ask_user_question`` for
+  respond-only human decisions, optional Seedream/Seedance media generation, sub-agents,
+  and MCP tools. Set ``ask_user_enabled=False`` for unattended agents.
+- Skills come from the Deep Agents skills middleware; manage them per agent via the CLI.
+- Optional ``system_files_path`` (e.g. ``.octop``) keeps skills, sessions, ``.env``,
+  and sqlite under a workspace subdir while persona markdown stays at the root.
+
+Enable provider-neutral `generate_image` and `generate_video` tools with Volcengine Ark:
+
+```python
+from harness_agent import HarnessAgentConfig, MediaGenerationConfig
+
+config = HarnessAgentConfig(
+    # ...providers/default_model...
+    media_generation=MediaGenerationConfig(api_key_env="ARK_API_KEY"),
+)
+```
+
+Generated files are stored under `generated/images/` and `generated/videos/` in the agent workspace. The tools
+are deferred by default and become visible through the configured tool-search strategy only when needed.
+Expected provider failures return a structured, model-visible error envelope with retry guidance instead of
+terminating the agent stream.
+
+### Multi-agent & collaboration
+- Multiple isolated agents per process via `AgentManager` + `registry`.
+- **Teams** peer inbox for agent-to-agent messaging.
+- **ACP** stdio server so external IDE / terminal AIs can invoke your agent.
+
+### Safety
+- `SecurityPolicy` with tool guardrails, filesystem permissions (`FilesystemPermission`), and PII redaction middleware.
+
+### CLI
+`harness-agent` provides: `init`, `chat`, `agent`, `config` (e.g. `config provider add`), `skill`, and `update`.
+
+## 🚀 Quick Start
+
+### Prerequisites
+- **Python 3.11+**
+- A model provider API key (OpenAI / Anthropic / Bedrock / compatible)
+
+### 1. Install
+
+```bash
+# Core SDK — agent runtime, model routing, tools, skills, backends
+pip install orcakit-harness-agent
+
+# With the terminal CLI — interactive chat, config, skill management
+pip install orcakit-harness-agent[cli]
+
+# Multiple extras — comma-separated inside one pair of brackets (quote for the shell):
+pip install 'orcakit-harness-agent[object-storage,desktop]'
+pip install 'orcakit-harness-agent[cli,all]'
+```
+
+Optional dependency extras (install only what you need; missing extras fail at use-time with an install hint):
+
+| Extra | What it adds |
+|-------|----------------|
+| `cli` | Terminal CLI (`harness-agent`) |
+| `bedrock` | AWS Bedrock provider |
+| `object-storage` | Tencent COS + Alibaba OSS + Huawei OBS SDKs |
+| `desktop` | Desktop screenshot / input (`mss`, `pynput`, `pillow`) |
+| `web-search-all` | All web-search backends (Tavily / Brave / Google) |
+| `remote-backends` | Postgres / upstream S3 via `deepagents-backends` (Python ≥3.12) |
+| `observability` | Langfuse |
+| `acp` | ACP agent runner |
+| `all` | All library feature extras above (**excludes** `cli`; use `[cli,all]` for both) |
+
+### 2. Initialize & configure
+
+```bash
+harness-agent init
+harness-agent config provider add   # choose a provider and paste your key
+```
+
+### 3. Chat
+
+```bash
+harness-agent chat
+```
+
+### Programmatic use
+
+```python
+from harness_agent import HarnessAgentManager, HarnessAgentConfig, ProviderConfig, ChatRequest
+
+manager = HarnessAgentManager()
+agent: HarnessAgentConfig = manager.create_agent(
+    name="assistant",
+    provider=ProviderConfig(name="openai", api_key="sk-..."),
+    model="gpt-4o",
+)
+request = ChatRequest(message="Summarize the Harness theory in one paragraph.")
+async for chunk in agent.stream(request):
+    print(chunk.delta, end="")
+```
+
+### Progressive tool loading
+
+Large, low-frequency tool sets can be hidden until the model needs them. The
+default `client` mode registers an ordinary `tool_search` function, so it works
+with any Chat Completions-compatible model that supports function calling. A
+deferred tool remains visible by its real name and short description, while its
+parameter schema is replaced by a lightweight reference. A search result is
+appended to the conversation, the matched full schemas replace their references
+on the next model step, and the loaded set persists for the thread. The selected
+tool is still called by its real name through the normal DeepAgents ToolNode,
+security guard, and interrupt policy.
+
+```python
+from harness_agent import HarnessAgentConfig, ProviderConfig
+
+provider = ProviderConfig(
+    id="openai",
+    base_url="https://openai-compatible.example/v1",
+    api_key="sk-...",
+    protocol="openai",
+)
+
+config = HarnessAgentConfig(
+    providers=[provider],
+    default_model="openai/your-function-calling-model",
+    tools=[generate_image, generate_video, generate_3d_asset],
+    deferred_tools=frozenset(
+        {"generate_image", "generate_video", "generate_3d_asset"},
+    ),
+    defer_mcp_tools=True,
+    tool_search_mode="client",  # default; no Responses API required
+)
+```
+
+Set `tool_search_mode="native"` to use OpenAI Responses hosted `tool_search`
+or Anthropic hosted `defer_loading` / `tool_reference`. Native mode additionally
+requires `ModelConfig.native_tool_search=True`; unsupported routed models use
+the configured `tool_search_fallback`. Set the mode to `eager` to disable
+progressive loading.
+
+## 📑 Contents
+
+- [Highlights](#-highlights)
+- [Overview](#-overview)
+- [Core Technology](#-core-technology)
+- [Features](#-features)
+- [Quick Start](#-quick-start)
+- **Reference**
+  - [CLI reference](#-cli-reference)
+  - [Project layout](#-project-layout)
+  - [Development](#-development)
+- **Project Info**
+  - [Contributing](#-contributing)
+  - [Related projects](#-related-projects)
+  - [License](#-license)
+
+## 📖 CLI reference
+
+| Command | Description |
+|---------|-------------|
+| `harness-agent init` | Bootstrap a workspace and config |
+| `harness-agent chat` | Interactive chat with an agent |
+| `harness-agent agent` | Create, list, and manage agents |
+| `harness-agent config` | Provider / model configuration (`config provider add`) |
+| `harness-agent skill` | Enable / disable per-agent skills |
+| `harness-agent update` | Check for and install updates |
+
+## 📁 Project layout
+
+```
+src/harness_agent/
+  agent.py          facade over deepagents.create_deep_agent
+  manager.py        AgentManager — multi-agent registry
+  config/           configs, provider & model presets
+  llm/factory.py    ChatModelFactory — model routing
+  backends/         BackendWorkspace — local / S3 / COS / Postgres
+  builtin/          tools + skills + seed files
+  middleware/       model_router, skill_filter, tool_guard, memory, pii, ...
+  memory/           MemoryRuntime (harness-memory wrapper)
+  protocols/        langgraph / openai / mcp streaming
+  acp/             ACP stdio server
+  teams/           peer inbox
+  cli/             terminal CLI
+```
+
+## 🛠️ Development
+
+**Prerequisites:** Python 3.11+, [uv](https://docs.astral.sh/uv/)
+
+```bash
+make install          # pip install -e ".[cli,dev]"
+make all              # lint + typecheck + test
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Run `make all` before submitting
+4. Open a Pull Request
+
+Module boundaries and coding conventions: [AGENTS.md](AGENTS.md).
+
+## 🔗 Related projects
+
+| Project | Description |
+|---------|-------------|
+| [deepagents](https://github.com/langchain-ai/deepagents) | The agentic foundation Harness Agent wraps — ❤️ tribute |
+| [harness-memory](https://github.com/TencentCloud/harness-memory) | Memory system behind the tiered recall |
+| [harness-browser](https://github.com/TencentCloud/harness-browser) | CDP browser automation used by the agent |
+| [harness-gateway](https://github.com/TencentCloud/harness-gateway) | Multi-platform IM channel bridge |
+| [Octop](https://github.com/TencentCloud/orca) | The self-hosted assistant that composes the Harness stack |
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
